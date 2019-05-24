@@ -4,6 +4,7 @@ import entity.Department;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
+import java.math.BigInteger;
 import java.util.List;
 
 public class DepartmentDAO {
@@ -14,12 +15,12 @@ public class DepartmentDAO {
         this.session = session;
     }
 
-    public Integer showStatistic(String departmentName){
+    public BigInteger showStatistic(String departmentName){
         Query query = session.
                 createSQLQuery("Select count(lectors_id) From department_lectors Where department_id in " +
                         "(Select id From department Where name = :departmentName );");
         query.setParameter("departmentName" , departmentName);
-        Integer size = (Integer) query.getSingleResult();
+        BigInteger size = (BigInteger) query.getSingleResult();
         return size;
     }
 

@@ -33,30 +33,6 @@ public class Lectors {
         this.departments = departments;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public Degree getDegree() {
-        return degree;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setDegree(Degree degree) {
-        this.degree = degree;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setDepartments(List<Department> departments) {
-        this.departments = departments;
-    }
-
     @Override
     public String toString() {
         return "Lectors{" +

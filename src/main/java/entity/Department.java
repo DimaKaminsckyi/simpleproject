@@ -29,17 +29,6 @@ public class Department {
         this.lectors = lectors;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLectors(List<Lectors> lectors) {
-        this.lectors = lectors;
-    }
 
     @Override
     public String toString() {

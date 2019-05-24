@@ -20,7 +20,7 @@ public class Main {
         Scanner strScan = new Scanner(System.in);
 
         System.out.println("1.Show count of employee for Department");
-        System.out.println("2.Show department statistic");
+        System.out.println("2.Global search");
         System.out.println("3.Calculate department salary");
         System.out.println("4.Show head of Department");
         System.out.println("5.Department Statistic");

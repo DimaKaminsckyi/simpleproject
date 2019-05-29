@@ -17,8 +17,8 @@ public class DepartmentDAO {
 
     public BigInteger showStatistic(String departmentName){
         Query query = session.
-                createSQLQuery("Select count(lectors_id) From department_lectors Where department_id in " +
-                        "(Select id From department Where name = :departmentName );");
+                createSQLQuery("SELECT count(lectors_id) FROM department_lectors " +
+                        "Inner Join department d on d.id = department_id and d.name = :departmentName ;");
         query.setParameter("departmentName" , departmentName);
         BigInteger size = (BigInteger) query.getSingleResult();
         return size;
@@ -26,9 +26,9 @@ public class DepartmentDAO {
 
     public List<Integer> getSalary(String departmentName){
         Query query = session.createSQLQuery(
-                "Select sum(salary)/count(salary) From task.lectors where id in" +
-                        " (Select lectors_id From department_lectors where department_id in " +
-                        "(Select id From department Where name = :departmentName));"
+                "Select sum(salary)/count(salary) from lectors " +
+                        "Inner join department_lectors dl on dl.lectors_id = lectors.id " +
+                        "Inner join department d on d.id = dl.department_id and d.name = :departmentName ;"
         );
         query.setParameter("departmentName" , departmentName);
         List result = query.list();
@@ -38,9 +38,9 @@ public class DepartmentDAO {
 
     public String getHeadOfDepartment(String departmentName){
         Query query = session
-                .createSQLQuery("Select full_name FROM lectors WHERE degree = 'Head_of_Department' and lectors.id in" +
-                " (Select lectors_id From department_lectors Where department_id in" +
-                "(Select id from department where name = :departmentName));");
+                .createSQLQuery("Select full_name From lectors " +
+                        "Inner Join department_lectors dl on dl.lectors_id = lectors.id and lectors.degree = 'Head_of_Department' " +
+                        "Inner Join department d on d.id = dl.department_id and name = :departmentName ;");
         query.setParameter("departmentName" , departmentName);
         String result = (String) query.getSingleResult();
         return result;
